@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Tugas 1 Landing Page</title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+</head>
+	
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	
+	<h3>Sistem Informasi Kepegawaian</h3>
+	<p>Selamat datang di Sistem Informasi Kepegawaian</p>
+	<hr>
+	
+	<h3>Lihat Data Pegawai berdasarkan NIP</h3>
+	<form>
+		<div class="card-body">
+			<label for="nip">Masukkan Nomor Induk Pegawai</label>
+			<input type="text" name="nip" class="form-control" />
+			<button type="submit" class="btn btn-primary">Cari</button>
+		</div>
+	</form>
+</body>
+
+
+</html>
