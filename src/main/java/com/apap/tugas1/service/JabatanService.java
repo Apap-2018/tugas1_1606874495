@@ -6,4 +6,6 @@ public interface JabatanService {
 	void addJabatan(JabatanModel jabatan);
 	
 	JabatanModel viewJabatan(long id);
+
+	void ubahJabatan(long id, JabatanModel jabatan);
 }

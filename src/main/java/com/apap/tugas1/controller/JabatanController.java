@@ -39,4 +39,17 @@ public class JabatanController {
 		model.addAttribute("jabatan", jabatan);
 		return "view-jabatan";
 	}
+	
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
+	private String ubahJabatan(@RequestParam("jabatanId") long jabatanId, Model model) {
+		JabatanModel jabatan = jabatanService.viewJabatan(jabatanId);
+		model.addAttribute("jabatan",jabatan);
+		return "update-jabatan";
+	}
+	
+	@RequestMapping(value = "/jabatan/ubah")
+	private String ubahJabatanSubmit(@RequestParam("jabatanId") long jabatanId, @ModelAttribute JabatanModel jabatan) {
+		jabatanService.ubahJabatan(jabatanId, jabatan);
+		return "update-jabatan";
+	}
 }

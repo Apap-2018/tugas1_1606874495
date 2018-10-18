@@ -21,4 +21,13 @@ public class JabatanServiceImpl implements JabatanService{
 	public JabatanModel viewJabatan(long id) {
 		return jabatanDb.getOne(id);
 	}
+	
+	@Override
+	public void ubahJabatan(long id, JabatanModel jabatan) {
+		JabatanModel jabatanUpdate = jabatanDb.getOne(id);
+		jabatanUpdate.setNama(jabatan.getNama());
+		jabatanUpdate.setDeskripsi(jabatan.getDeskripsi());
+		jabatanUpdate.setGajiPokok(jabatan.getGajiPokok());
+		jabatanDb.save(jabatanUpdate);
+	}
 }
