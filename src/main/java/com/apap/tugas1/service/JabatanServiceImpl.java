@@ -16,4 +16,9 @@ public class JabatanServiceImpl implements JabatanService{
 	public void addJabatan(JabatanModel jabatan) {
 		jabatanDb.save(jabatan);
 	}
+	
+	@Override
+	public JabatanModel viewJabatan(long id) {
+		return jabatanDb.getOne(id);
+	}
 }

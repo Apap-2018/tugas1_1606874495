@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,7 +30,9 @@ public class PegawaiController {
 	private JabatanDb jabatanDb;
 	
 	@RequestMapping("/")
-	private String landing() {
+	private String landing(Model model) {
+		List<JabatanModel> jabatanList = jabatanDb.findAll();
+		model.addAttribute("jabatanList",jabatanList);
 		return "landing";
 	}
 	
@@ -37,9 +40,7 @@ public class PegawaiController {
 	private String view(@RequestParam (value="nip") String nip, Model model) {
 		PegawaiModel pegawai = pegawaiService.getPegawaiDetailByNip(nip).get();
 		List<JabatanModel> jabatanList = pegawai.getJabatanList();
-		List<JabatanModel> jabatanAll = jabatanDb.findAll();
 		int gaji = pegawaiService.countGaji(nip);
-		model.addAttribute("jabatanAll", jabatanAll);
 		model.addAttribute("gaji", gaji);
 		model.addAttribute("pegawai", pegawai);
 		model.addAttribute("instansi", pegawai.getInstansi().getNama());

@@ -23,6 +23,19 @@
 			<button type="submit" class="btn btn-primary">Cari</button>
 		</div>
 	</form>
+	
+	<hr>
+	<h3>Lihat Detail Jabatan</h3>
+	<form th:action = "@{/jabatan/view}" method = "GET">
+		<label for="jabatanId">Pilih Jabatan</label>
+			<div class="card-body">
+		<select class="form-control" required="required" name="jabatanId">
+			<option th:each="jabatan : ${jabatanList} " th:text="${jabatan.nama}" th:value="${jabatan.id}"></option>
+		</select>
+		<br>
+		<button type="submit" class="btn bthn-primary">Lihat</button>
+			</div>
+	</form>
 </body>
 
 
