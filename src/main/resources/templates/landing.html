@@ -16,7 +16,7 @@
 	<hr>
 	
 	<h3>Lihat Data Pegawai berdasarkan NIP</h3>
-	<form>
+	<form th:action="@{/pegawai/}" method="GET">
 		<div class="card-body">
 			<label for="nip">Masukkan Nomor Induk Pegawai</label>
 			<input type="text" name="nip" class="form-control" />
