@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,16 +41,16 @@ public class JabatanController {
 		return "view-jabatan";
 	}
 	
-	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
-	private String ubahJabatan(@RequestParam("jabatanId") long jabatanId, Model model) {
-		JabatanModel jabatan = jabatanService.viewJabatan(jabatanId);
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
+	private String ubahJabatan(@RequestParam("jabatanId") String jabatanId, Model model) {
+		JabatanModel jabatan = jabatanService.viewJabatan(Long.parseLong(jabatanId));
 		model.addAttribute("jabatan",jabatan);
 		return "update-jabatan";
 	}
 	
-	@RequestMapping(value = "/jabatan/ubah")
-	private String ubahJabatanSubmit(@RequestParam("jabatanId") long jabatanId, @ModelAttribute JabatanModel jabatan) {
-		jabatanService.ubahJabatan(jabatanId, jabatan);
-		return "update-jabatan";
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
+	private String ubahJabatanSubmit(@ModelAttribute JabatanModel jabatan, Model model) {
+		jabatanService.ubahJabatan(jabatan.getId(), jabatan);
+		return "redirect:/jabatan/ubah?jabatanId=" + jabatan.getId();
 	}
 }

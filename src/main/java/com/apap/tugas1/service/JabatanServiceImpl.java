@@ -25,6 +25,7 @@ public class JabatanServiceImpl implements JabatanService{
 	@Override
 	public void ubahJabatan(long id, JabatanModel jabatan) {
 		JabatanModel jabatanUpdate = jabatanDb.getOne(id);
+		jabatanUpdate.setId(jabatan.getId());
 		jabatanUpdate.setNama(jabatan.getNama());
 		jabatanUpdate.setDeskripsi(jabatan.getDeskripsi());
 		jabatanUpdate.setGajiPokok(jabatan.getGajiPokok());

@@ -10,8 +10,8 @@
 
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<h3>Ubah Jabatan</h3>
-	<form th:action="@{'/jabatan/ubah'(jabatanId=${jabatan.id})}" th:object="${jabatan}">
-	<input type="hidden" th:value="${jabatan.id}" name="jabatanId"/>
+	<form th:action="@{/jabatan/ubah/}" th:object="${jabatan}" method="POST">
+	<input type="hidden" th:value="${jabatan.id}" name="id"/>
 	Nama <br>
 	<input type="text" name="nama" th:value="${jabatan.nama}"/>
 	<br>
