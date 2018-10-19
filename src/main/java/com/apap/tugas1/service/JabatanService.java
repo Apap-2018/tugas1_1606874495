@@ -14,4 +14,6 @@ public interface JabatanService {
 	void deleteJabatan(JabatanModel jabatan);
 
 	List<JabatanModel> viewAll();
+	
+	
 }

@@ -16,4 +16,8 @@ public interface PegawaiService {
 	PegawaiModel findYoungest(InstansiModel instansi);
 
 	PegawaiModel findOldest(InstansiModel instansi);
+
+	String buatNip(PegawaiModel pegawai);
+	
+	PegawaiModel addPegawai(PegawaiModel pegawai);
 }
