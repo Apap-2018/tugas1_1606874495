@@ -8,4 +8,6 @@ public interface JabatanService {
 	JabatanModel viewJabatan(long id);
 
 	void ubahJabatan(long id, JabatanModel jabatan);
+
+	void deleteJabatan(JabatanModel jabatan);
 }

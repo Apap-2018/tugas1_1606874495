@@ -42,8 +42,8 @@ public class JabatanController {
 	}
 	
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
-	private String ubahJabatan(@RequestParam("jabatanId") String jabatanId, Model model) {
-		JabatanModel jabatan = jabatanService.viewJabatan(Long.parseLong(jabatanId));
+	private String ubahJabatan(@RequestParam("jabatanId") long jabatanId, Model model) {
+		JabatanModel jabatan = jabatanService.viewJabatan(jabatanId);
 		model.addAttribute("jabatan",jabatan);
 		return "update-jabatan";
 	}
@@ -51,6 +51,13 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
 	private String ubahJabatanSubmit(@ModelAttribute JabatanModel jabatan, Model model) {
 		jabatanService.ubahJabatan(jabatan.getId(), jabatan);
-		return "redirect:/jabatan/ubah?jabatanId=" + jabatan.getId();
+		model.addAttribute("jabatan", jabatan);
+		return "update-jabatan";
+	}
+	
+	@RequestMapping(value = "/jabatan/hapus", method = RequestMethod.POST)
+	private String delete(@ModelAttribute JabatanModel jabatan, Model model) {
+		jabatanService.deleteJabatan(jabatan);
+		return "redirect:/";
 	}
 }

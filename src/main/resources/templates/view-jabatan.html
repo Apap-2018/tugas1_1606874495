@@ -15,12 +15,18 @@
 	
 	<form th:action="@{/jabatan/ubah?jabatanId=} + ${jabatan.id}" th:object="${jabatan}" method ="GET">
 		<input type="hidden" th:value="${jabatan.id}" name="jabatanId"></input>
-		<button type="submit">Ubah</button>
+		<button type="submit" class="btn btn-primary">Ubah</button>
 	</form>
-	<form>
-		<input type="hidden"></input>
-		<button type="submit">Hapus</button>
+	<form th:action="@{/jabatan/hapus}" th:object="${jabatan}" method="POST">
+		<input type="hidden" th:field="${jabatan.id}"></input>
+		<button type="submit" onclick="notify()" class="btn btn-primary">Hapus</button>
 	</form>
+	
+	<script>
+	function notify() {
+    	alert("Data Berhasil Dihapus");
+	}
+	</script>
 </body>
 
 

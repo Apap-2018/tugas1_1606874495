@@ -21,8 +21,14 @@
 	Gaji Pokok <br>
 	<input type="number" name="gajiPokok" th:value="${jabatan.gajiPokok}"/>
 	<br><br>
-	<button type="submit">Simpan</button>
-	</form>	
+	<button type="submit" onclick="notify()">Simpan</button>
+	</form>
+	
+	<script>
+	function notify() {
+    	alert("Data Berhasil Diganti");
+	}
+</script>
 </body>
 	
 	
