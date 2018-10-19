@@ -1,5 +1,7 @@
 package com.apap.tugas1.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +36,11 @@ public class JabatanServiceImpl implements JabatanService{
 	
 	@Override
 	public void deleteJabatan(JabatanModel jabatan) {
-		System.out.println("testlagi");
-		System.out.println(jabatan.getNama());
-		System.out.println(jabatan.getId());
 		jabatanDb.delete(jabatan);
+	}
+	
+	@Override
+	public List<JabatanModel> viewAll(){
+		return jabatanDb.findAll();
 	}
 }

@@ -1,27 +1,21 @@
 package com.apap.tugas1.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.apap.tugas1.model.InstansiModel;
 import com.apap.tugas1.model.JabatanModel;
 import com.apap.tugas1.model.PegawaiModel;
-import com.apap.tugas1.repository.JabatanDb;
 import com.apap.tugas1.repository.PegawaiDb;
-import com.apap.tugas1.repository.ProvinsiDb;
 
 @Service
 public class PegawaiServiceImpl implements PegawaiService{
 	
 	@Autowired
 	private PegawaiDb pegawaiDb;
-	
-	@Autowired
-	private JabatanDb jabatanDb;
-	
-	@Autowired
-	private ProvinsiDb provinsiDb;
 	
 	@Override
 	public Optional<PegawaiModel> getPegawaiDetailByNip(String nip) {
@@ -48,4 +42,17 @@ public class PegawaiServiceImpl implements PegawaiService{
 		int gajiFinal = (int) (gajiPokok+(persentaseTunjangan/100*gajiPokok));
 		return gajiFinal;
 	}
+	
+	@Override
+	public PegawaiModel findYoungest(InstansiModel instansi){
+		List<PegawaiModel> pegawaiInstansi = pegawaiDb.findByInstansiOrderByTanggalLahirAsc(instansi);
+		return pegawaiInstansi.get(0);
+	}
+	
+	@Override
+	public PegawaiModel findOldest(InstansiModel instansi){
+		List<PegawaiModel> pegawaiInstansi = pegawaiDb.findByInstansiOrderByTanggalLahirAsc(instansi);
+		return pegawaiInstansi.get(pegawaiInstansi.size()-1);
+	}
+	
 }
