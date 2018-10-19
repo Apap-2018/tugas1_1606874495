@@ -9,20 +9,34 @@
 <body>
 
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<h3>Tambah Jabatan</h3>
-	<form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
-	<input type="hidden"/>
-	Nama <br>
-	<input type="text" name="nama"/>
-	<br>
-	Deskripsi <br>
-	<input type="text" name="deskripsi"/>
-	<br>
-	Gaji Pokok <br>
-	<input type="number" name="gajiPokok"/>
-	<br><br>
-	<button type="submit" onclick="notify()">Simpan</button>
-	</form>	
+	<div class="container-fluid">
+		<h2 th:text="'Tambah Jabatan'"></h2>
+		<form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
+			<table class="table">
+				<tbody>
+				 	<tr>
+				 		<td th:text="'Nama'"></td>
+				 		<td>
+			 				<input type="text" th:field="*{nama}" class="form-control"/>
+				 		</td>
+				 	</tr>
+				 	<tr>
+				 		<td th:text="'Deskripsi'"></td>
+				 		<td>
+			 				<input type="text" th:field="*{deskripsi}" class="form-control"/>
+				 		</td>
+				 	</tr>
+				 	<tr>
+				 		<td th:text="'Gaji Pokok'"></td>
+				 		<td>
+			 				<input type="number" th:field="*{gajiPokok}" class="form-control"/>
+				 		</td>
+				 	</tr>
+				</tbody>
+			</table>
+			<button type="submit" name="submit" onclick="notify()" class="btn btn-primary">Simpan</button>
+		</form>
+	</div>	
 	
 	<script>
 	function notify() {

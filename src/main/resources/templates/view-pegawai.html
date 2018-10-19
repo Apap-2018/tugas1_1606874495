@@ -9,22 +9,54 @@
 <body>
 
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<h3 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h3>
-	<p th:text="'NIP					' + ${pegawai.nip}"></p>
-	<p th:text="'Nama					' + ${pegawai.nama}"></p>
-	<p th:text="'Tempat Lahir			' + ${pegawai.tempatLahir}"></p>
-	<p th:text="'Tanggal Lahir			' + ${pegawai.tanggalLahir}"></p>
-	<p th:text="'Tahun Masuk			' + ${pegawai.tahunMasuk}"></p>
-	<p th:text="'Nama Instansi			' + ${instansi}"></p>
-	<div th:each="jabatan : ${jabatanList}">
-		<p th:text="'Jabatan				' + ${jabatan.nama}"></p>
+	<div class="container-fluid">
+		<div class="col-md-8">
+			<h2 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h2>
+			<br>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td th:text="'NIP'"></td>
+						<td th:text="${pegawai.nip}"></td>
+					</tr>
+					<tr>
+						<td th:text="'Nama'"></td>
+						<td th:text="${pegawai.nama}"></td>
+					</tr>
+					<tr>
+						<td th:text="'Tempat Lahir'"></td>
+						<td th:text="${pegawai.tempatLahir}"></td>
+					</tr>
+					<tr>
+						<td th:text="'Tanggal Lahir'"></td>
+						<td th:text="${pegawai.tanggalLahir}"></td>
+					</tr>
+					<tr>
+						<td th:text="'Tahun Masuk'"></td>
+						<td th:text="${pegawai.tahunMasuk}"></td>
+					</tr>
+					<tr>
+						<td th:text="'Nama Instansi'"></td>
+						<td th:text="${pegawai.instansi.nama} + ' - ' + ${pegawai.instansi.provinsi.nama}"></td>
+					</tr>
+					<tr th:each="jabatan, iterationStat : ${listJabatan}">
+						<td th:text="${iterationStat.first} ? 'Jabatan'"></td>
+						<td>
+							<ul>
+								<li th:text="${jabatan.nama}"></li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td th:text="'Gaji'"></td>
+						<td th:text="'Rp' + ${gaji}"></td>
+					</tr>
+				</tbody>
+			
+			</table>
+			<a class="btn btn-primary" th:href="@{/pegawai/ubah?nip=} + ${nip}">Ubah</a>
+		</div>
 	</div>
-	<p th:text="'Gaji			' + ${gaji}"></p>
-	
-	<form>
-		<input type="hidden"></input>
-		<button type="submit">Ubah</button>
-	</form>
 	
 </body>
 

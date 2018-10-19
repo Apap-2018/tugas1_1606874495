@@ -11,20 +11,25 @@
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	
+	<div class="col-md-6">
 	<h3>Sistem Informasi Kepegawaian</h3>
 	<p>Selamat datang di Sistem Informasi Kepegawaian</p>
+	</div>
 	<hr>
 	
+	<div class="col-md-6">
 	<h3>Lihat Data Pegawai berdasarkan NIP</h3>
 	<form th:action="@{/pegawai/}" method="GET">
+	<label for="nip">Masukkan Nomor Induk Pegawai</label>
 		<div class="card-body">
-			<label for="nip">Masukkan Nomor Induk Pegawai</label>
 			<input type="text" name="nip" class="form-control" />
+			<br>
 			<button type="submit" class="btn btn-primary">Cari</button>
 		</div>
 	</form>
-	
+	</div>
 	<hr>
+	<div class="col-md-6">
 	<h3>Lihat Detail Jabatan</h3>
 	<form th:action = "@{/jabatan/view}" method = "GET">
 		<label for="jabatanId">Pilih Jabatan</label>
@@ -33,11 +38,13 @@
 			<option th:each="jabatan : ${jabatanList} " th:text="${jabatan.nama}" th:value="${jabatan.id}"></option>
 		</select>
 		<br>
-		<button type="submit" class="btn bthn-primary">Lihat</button>
+		<button type="submit" class="btn btn-primary">Lihat</button>
 			</div>
 	</form>
-	
+	</div>
 	<hr>
+	
+	<div class="col-md-6">
 	<h3>Lihat Pegawai Termuda dan Tertua</h3>
 	<form th:action = "@{/pegawai/termuda-tertua}" method = "GET">
 		<label for="instansiId">Pilih Instansi</label>
@@ -46,9 +53,10 @@
 			<option th:each="instansi : ${instansiList} " th:text="${instansi.nama}" th:value="${instansi.id}"></option>
 		</select>
 		<br>
-		<button type="submit" class="btn bthn-primary">Lihat</button>
+		<button type="submit" class="btn btn-primary">Lihat</button>
 			</div>
 	</form>
+	</div>
 </body>
 
 
